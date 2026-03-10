@@ -4,7 +4,7 @@ File: cabin_five.py
 Description:
 Cabin with the conductor’s locked door. Interaction hints at
 the player’s connection to the train.
-
+fart
 Author: Kate Bartu
 Date Created: March 10, 2026
 """
