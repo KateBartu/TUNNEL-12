@@ -17,57 +17,48 @@ import cabin_five
 import final_cabin
 from minigames.morse_puzzle import generate_code
 
-loop_count = 1
-game_over = False
-
-game_state = {
-    "loop_count": 1,
-    "knows_about_loop": False,
-    "saw_ticket": False,
-    "met_smiling_man": False,
-    "saw_shadow": False,
-    "knows_conductor": False,
-    "has_old_woman_paper": False,
-    "took_hatch_shortcut": False,
-    "picked_up_metal_object": False,
-    "has_unlocked": False,
-    "morse_code": ""
-}
-
 inventory = []
 
 
-def main():
-    global loop_count
-    global game_over
+def reset_state():
 
-    print("=======================")
-    print("|      TUNNEL 12      |")
-    print("=======================\n")
+    global inventory
+    inventory = []
 
-    player_name = input("Please enter your name: \n")
-    print(f"Welcome {player_name}, to Tunnel 12.\n")
-    print("The train hums beneath your feet.\n"
-          "You don't remember boarding or buying a ticket.\n")
+    return {
+        "loop_count": 1,
+        "saw_ticket": False,
+        "saw_shadow": False,
+        "knows_conductor": False,
+        "has_old_woman_paper": False,
+        "took_hatch_shortcut": False,
+        "picked_up_metal_object": False,
+        "cabin5_unlocked": False,
+        "morse_code": ""
+    }
 
-    while not game_over:
+
+def play_game():
+
+    game_state = reset_state()
+    loop_count = 1
+    game_over = False
+
+    while game_over == False:
+
         game_state["loop_count"] = loop_count
-        game_state["morse_unlocked"] = False
-
         generate_code(game_state)
-
-    while not game_over:
-
-        game_state["loop_count"] = loop_count
 
         print("\n" + "=" * 40)
         print("LOOP:", loop_count)
         print("=" * 40)
 
         if game_state.get("took_hatch_shortcut"):
+
             game_over = final_cabin.enter(game_state, loop_count)
 
         else:
+
             cabin_one.enter(game_state)
             cabin_two.enter(game_state)
             cabin_three.enter(game_state)
@@ -78,7 +69,37 @@ def main():
 
         loop_count += 1
 
+    replay()
+
+
+def replay():
+
+    choice = input("\nPlay again? (y/n): ").lower()
+
+    if choice == "y":
+        play_game()
+
+    elif choice == "n":
+        print("\nThanks for playing Tunnel 12!")
+
+    else:
+        print("Invalid choice.")
+        replay()
+
+
+def main():
+
+    print("=======================")
+    print("|      TUNNEL 12      |")
+    print("=======================\n")
+
+    name = input("Please enter your name:\n")
+
+    print(f"\nWelcome {name}, to Tunnel 12.\n")
+    print("The train hums beneath your feet.\n")
+
+    play_game()
+
 
 if __name__ == "__main__":
     main()
-

@@ -40,22 +40,22 @@ def first_loop(state):
           "Befuddled, you stand up.\n")
 
 
-    while True:
-        choice = input("Do you\n"
-                       "a) look around.\n"
-                       "b) charge ahead to the next cabin.\n"
-                       "c) Ask the old lady, 'Where are we going?'\n").lower()
-        if choice == "a":
-            option_a(state)
-            break
-        elif choice == "b":
-            cabin_two.enter(state)
-            break
-        elif choice == "c":
-            option_c(state)
-            break
-        else:
-            print("Invalid choice.")
+    choice = input("Do you\n"
+                    "a) look around.\n"
+                    "b) charge ahead to the next cabin.\n"
+                    "c) Ask the old lady, 'Where are we going?'\n").lower()
+
+    if choice == "a":
+        option_a(state)
+
+    elif choice == "b":
+        cabin_two.enter(state)
+
+    elif choice == "c":
+        option_c(state)
+
+    else:
+        print("Invalid choice.")
 
 # ================= SECOND LOOP ================= #
 
@@ -72,15 +72,17 @@ def cabin_one2(state):
     choice = input("Do you\n"
                    "a) look around.\n"
                    "b) charge ahead to the next cabin.\n").lower()
+
     if choice == "a":
         option_a(state)
+
     elif choice == "b":
         cabin_two.enter(state)
+
     else:
         print("Invalid choice.")
 
-
-# ================= THIRD LOOP =================
+# ================= THIRD LOOP ================= #
 
 def cabin_one3(state):
 
@@ -94,11 +96,14 @@ def cabin_one3(state):
 
     choice = input("Do you\n"
                    "a) Rush back to Cabin Two\n"
-                   "b) Try to talk to the lady one more time\n")
+                   "b) Try to talk to the lady one more time\n").lower()
+
     if choice == "a":
         cabin_two.enter(state)
+
     elif choice == "b":
         option_retalk(state)
+
     else:
         print("Invalid choice.")
 
@@ -135,7 +140,7 @@ def cabin_one4(state):
           "I'm sure if you're careful you could make it!\n")
     state["took_hatch_shortcut"] = True
 
-# ================= OPTION A =================
+# ================= OPTION A ================= #
 
 def option_a(state):
 
@@ -152,9 +157,10 @@ def option_a(state):
     if sub_choice == "1":
         option_a1(state)
     elif sub_choice == "2":
-        cabin_two.enter({})
+        cabin_two.enter(state)
     else:
         print("Invalid choice.")
+        option_a(state)
 
 
 # ================= OPTION A1 =================
@@ -176,6 +182,7 @@ def option_a1(state):
 
     if sub_choice == "1":
         cabin_two.enter(state)
+
     elif sub_choice == "2":
         print("\nYour voice cracks as you ask the question.\n"
               "'How do they know my name?'\n"
@@ -190,8 +197,10 @@ def option_a1(state):
               "The hum never stops.\n")
         state["loop_count"] = 2
         cabin_one2(state)
+
     else:
         print("Invalid choice.")
+        option_a1(state)
 
 # ================= OPTION C =================
 
