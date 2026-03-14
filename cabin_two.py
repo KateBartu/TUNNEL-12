@@ -39,6 +39,7 @@ def enter(state):
 
     else:
         print("Invalid choice.")
+        enter(state)
 
 
 def watch_man(state):
@@ -65,7 +66,7 @@ def watch_man(state):
         state["saw_ticket"] = True
 
         if "brass token" not in main.inventory:
-            main.inventory.append("brass token")
+            main.inventory.append("brass_token")
 
         input("Press enter to continue to Cabin 3\n")
         cabin_three.enter(state)
@@ -76,7 +77,7 @@ def watch_man(state):
               "'Too late,' he says.\n"
               "The lights flicker.\n"
               "The world folds inward.\n")
-        cabin_one.cabin_one2(state)
+        cabin_one.cabin_one3(state)
 
     else:
         print("Invalid choice.")

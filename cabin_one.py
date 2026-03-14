@@ -56,6 +56,7 @@ def first_loop(state):
 
     else:
         print("Invalid choice.")
+        first_loop(state)
 
 # ================= SECOND LOOP ================= #
 
@@ -70,17 +71,18 @@ def cabin_one2(state):
           "8:07pm\n")
 
     choice = input("Do you\n"
-                   "a) look around.\n"
+                   "a) Ask the old lady, 'Where are we going?'\n"
                    "b) charge ahead to the next cabin.\n").lower()
 
     if choice == "a":
-        option_a(state)
+        option_c(state)
 
     elif choice == "b":
         cabin_two.enter(state)
 
     else:
         print("Invalid choice.")
+        cabin_one2(state)
 
 # ================= THIRD LOOP ================= #
 
@@ -106,6 +108,7 @@ def cabin_one3(state):
 
     else:
         print("Invalid choice.")
+        cabin_one3(state)
 
 def option_retalk(state):
 

@@ -10,7 +10,7 @@ Date Created: March 10, 2026
 """
 
 import main
-import cabin_two
+import cabin_one
 import final_cabin
 
 def enter(state):
@@ -20,28 +20,35 @@ def enter(state):
 
     print("\nCABIN 5\n")
     print("A locked conductor's door blocks the way forward.\n"
-        "A small brass plaque reads:\n"
-        "AUTHORIZED PERSONNEL ONLY\n")
+          "A small brass plaque reads:\n"
+          "AUTHORIZED PERSONNEL ONLY\n")
 
-    if "brass_token" in main.inventory:
-        print("The circular indentation beside the door matches the token from the man in the gray coat.")
-        choice = input("Do you\n"
-                       "1) Insert the token\n"
-                       "2) Step away\n")
+    print("A circular slot sits beside the handle.\n")
 
-        if choice == "1":
-            print("The token clicks into place.\n"
-                  "The door unlocks with a heavy clunk\n")
-            final_cabin.enter({}, main.loop_count)
+    choice = input("Do you\n"
+                   "1) Insert the token\n"
+                   "2) Restart with caution.\n")
+
+    if choice == "1":
+
+        if "brass_token" in main.inventory:
+
+            print("\nThe token clicks into place.\n"
+                  "The door unlocks with a heavy clunk.\n")
+
+            state["cabin5_unlocked"] = True
 
         else:
-            print("You hesitate.")
-            state["loop_count"] = state.get("loop_count", 1) + 1
-            final_cabin.enter({}, main.loop_count)
+
+            print("\nToken not found.\n")
+            input("Press enter to continue.\n")
+            enter(state)
+
+    elif choice == "2":
+
+        print("\nYou step away from the door.\n")
+        cabin_one.cabin_one4(state)
 
     else:
-        print("The door us locked.\n"
-              "A circular slot sits beside the handle.\n")
-        input("Press enter to continue.\n")
-        state["loop_count"] = state.get("loop_count", 1) + 1
-        cabin_two.enter(state)
+        print("Invalid choice.")
+        enter(state)

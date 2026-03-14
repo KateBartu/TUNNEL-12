@@ -34,6 +34,7 @@ def reset_state():
         "took_hatch_shortcut": False,
         "picked_up_metal_object": False,
         "cabin5_unlocked": False,
+        "saw_conductor_reflection": False,
         "morse_code": ""
     }
 
@@ -96,7 +97,6 @@ def main():
     name = input("Please enter your name:\n")
 
     print(f"\nWelcome {name}, to Tunnel 12.\n")
-    print("The train hums beneath your feet.\n")
 
     play_game()
 

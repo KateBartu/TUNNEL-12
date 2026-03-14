@@ -29,6 +29,10 @@ def enter(state):
     elif close.lower() == "n":
         print("\nYou leave the cabin door open.")
 
+    else:
+        print("Invalid choice.")
+        enter(state)
+
     choice = input("Do you\n"
                    "1) Inspect the broken window\n"
                    "2) Move to the next cabin\n")
@@ -41,6 +45,7 @@ def enter(state):
 
     else:
         print("Invalid choice.")
+        enter(state)
 
 
 def broken_window(state):
@@ -56,5 +61,6 @@ def broken_window(state):
           "You make towards the doors to Cabin 4.")
 
     state["saw_conductor_reflection"] = True
+    state["knows_conductor"] = True
     input("Press enter to continue.")
     cabin_four.enter(state)
