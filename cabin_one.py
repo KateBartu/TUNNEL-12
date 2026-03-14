@@ -10,6 +10,7 @@ Date Created: March 10, 2026
 """
 
 import cabin_two
+import main
 
 def enter(state):
     if state.get("loop_count", 1) == 1:
@@ -25,6 +26,7 @@ def enter(state):
 
 def first_loop(state):
 
+    main.display_status(state, 1)
     print("\nCABIN 1\n")
 
     print("The train hums beneath your feet.\n"
@@ -41,18 +43,18 @@ def first_loop(state):
 
 
     choice = input("Do you\n"
-                    "a) look around.\n"
-                    "b) charge ahead to the next cabin.\n"
-                    "c) Ask the old lady, 'Where are we going?'\n").lower()
+                    "1) look around.\n"
+                    "2) charge ahead to the next cabin.\n"
+                    "3) Ask the old lady, 'Where are we going?'\n").lower()
 
-    if choice == "a":
-        option_a(state)
+    if choice == "1":
+        option_1(state)
 
-    elif choice == "b":
+    elif choice == "2":
         cabin_two.enter(state)
 
-    elif choice == "c":
-        option_c(state)
+    elif choice == "3":
+        option_3(state)
 
     else:
         print("Invalid choice.")
@@ -62,7 +64,8 @@ def first_loop(state):
 
 def cabin_one2(state):
 
-    print("\nCABIN 1    LOOP 2\n")
+    main.display_status(state, 1)
+    print("\nCABIN 1\n")
     print("The train hums beneath your feet.\n"
           "The map above the door reads: NEXT STOP - TUNNEL 12\n"
           "The intercom crackles, 'Thank you for choosing TriMet Transit-'\n"
@@ -71,13 +74,13 @@ def cabin_one2(state):
           "8:07pm\n")
 
     choice = input("Do you\n"
-                   "a) Ask the old lady, 'Where are we going?'\n"
-                   "b) charge ahead to the next cabin.\n").lower()
+                   "1) Ask the old lady, 'Where are we going?'\n"
+                   "2) charge ahead to the next cabin.\n").lower()
 
-    if choice == "a":
-        option_c(state)
+    if choice == "1":
+        option_3(state)
 
-    elif choice == "b":
+    elif choice == "2":
         cabin_two.enter(state)
 
     else:
@@ -88,7 +91,8 @@ def cabin_one2(state):
 
 def cabin_one3(state):
 
-    print("\nCABIN 1    LOOP 3\n")
+    main.display_status(state, 1)
+    print("\nCABIN 1\n")
     print("The train hums beneath your feet.\n"
           "Back in cabin 1? No way - it can't be...\n"
           "Nobody is here.\n"
@@ -97,13 +101,13 @@ def cabin_one3(state):
           "'...this train will be stopping shortly...'\n")
 
     choice = input("Do you\n"
-                   "a) Rush back to Cabin Two\n"
-                   "b) Try to talk to the lady one more time\n").lower()
+                   "1) Rush back to Cabin Two\n"
+                   "2) Try to talk to the lady one more time\n").lower()
 
-    if choice == "a":
+    if choice == "1":
         cabin_two.enter(state)
 
-    elif choice == "b":
+    elif choice == "2":
         option_retalk(state)
 
     else:
@@ -125,6 +129,11 @@ def option_retalk(state):
           "'And not before.' she warns with a stern look. \n"
           "You pocket the paper.\n")
     state["has_old_woman_paper"] = True
+
+    if "old woman's note" not in main.inventory:
+        main.inventory.append("old woman's note")
+    main.display_status(state, 1)
+
     input("Press enter to continue to Cabin 2.\n")
     cabin_two.enter(state)
 
@@ -132,7 +141,8 @@ def option_retalk(state):
 
 def cabin_one4(state):
 
-    print("\nCABIN 1    LOOP 4\n")
+    main.display_status(state, 1)
+    print("\nCABIN 1\n")
     print("The train hums beneath your feet.\n"
           "Back again. You think to yourself.\n"
           "You look above you and notice a hatch glows faintly of an outside light.\n")
@@ -145,7 +155,7 @@ def cabin_one4(state):
 
 # ================= OPTION A ================= #
 
-def option_a(state):
+def option_1(state):
 
     print("\nThe route map flickers between stations too fast to read.\n"
           "Every advertisement features the same smiling man.\n"
@@ -158,17 +168,17 @@ def option_a(state):
                        "2) Move onto the next cabin.\n")
 
     if sub_choice == "1":
-        option_a1(state)
+        option_11(state)
     elif sub_choice == "2":
         cabin_two.enter(state)
     else:
         print("Invalid choice.")
-        option_a(state)
+        option_1(state)
 
 
 # ================= OPTION A1 =================
 
-def option_a1(state):
+def option_11(state):
 
     print("\nYou've looked long enough and you realize,\n"
           "No one else is blinking.\n"
@@ -203,11 +213,11 @@ def option_a1(state):
 
     else:
         print("Invalid choice.")
-        option_a1(state)
+        option_11(state)
 
 # ================= OPTION C =================
 
-def option_c(state):
+def option_3(state):
 
     print("\nWhere are we going? You ask the lady.\n"
           "She doesn’t answer immediately.\n"
@@ -221,6 +231,6 @@ def option_c(state):
           "The lights flicker.\n"
           "For half a second.\n")
 
-    input("Press c to continue.\n")
+    input("Press enter to continue.\n")
     state["loop_count"] = 2
-    cabin_one2(state)
+    cabin_one3(state)

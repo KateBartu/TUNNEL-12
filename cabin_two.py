@@ -19,8 +19,8 @@ def enter(state):
     if state.get("took_hatch_shortcut"):
         return  # skip cabin if hatch taken
 
+    main.display_status(state, 1)
     print("\nCABIN 2\n")
-
     print("You step into Cabin 2.\n"
           "The lighting is harsher here.\n"
           "The seats are empty.\n"
@@ -67,6 +67,7 @@ def watch_man(state):
 
         if "brass token" not in main.inventory:
             main.inventory.append("brass_token")
+        main.display_status(state, 2)
 
         input("Press enter to continue to Cabin 3\n")
         cabin_three.enter(state)

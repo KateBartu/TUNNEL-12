@@ -8,6 +8,7 @@ Author: Kate Bartu
 Date Created: March 10, 2026
 """
 
+import main
 import cabin_five
 import cabin_one
 from minigames.morse_puzzle import play
@@ -58,8 +59,8 @@ def enter(state):
     if state.get("took_hatch_shortcut"):
         return
 
+    main.display_status(state, 1)
     print("\nCABIN 4\n")
-
     print("The lights flicker.\n"
           "Something moves in the reflection of the window.\n"
           "A heavy metal door blocks the way to the next cabin.\n"
@@ -85,7 +86,7 @@ def enter(state):
             read_note()
         else:
             print("\nYou don't have anything to read.\n")
-            input("Press any key to restart at Cabin One.\n")
+            input("Press enter to restart at Cabin One.\n")
             cabin_one.cabin_one3(state)
 
     elif choice == "3":

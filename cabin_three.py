@@ -10,11 +10,12 @@ Date Created: March 10, 2026
 """
 
 import cabin_four
+import main
 
 def enter(state):
 
+    main.display_status(state, 1)
     print("\nCABIN 3\n")
-
     print("You step into the next cabin.\n"
           "The lights buzz loudly overhead.\n"
           "Half the seats are overturned.\n"

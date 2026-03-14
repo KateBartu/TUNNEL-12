@@ -11,13 +11,13 @@ Date Created: March 10, 2026
 
 import main
 import cabin_one
-import final_cabin
 
 def enter(state):
 
     if state.get("took_hatch_shortcut"):
         return
 
+    main.display_status(state, 1)
     print("\nCABIN 5\n")
     print("A locked conductor's door blocks the way forward.\n"
           "A small brass plaque reads:\n"

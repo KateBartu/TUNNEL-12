@@ -17,14 +17,16 @@ import cabin_five
 import final_cabin
 from minigames.morse_puzzle import generate_code
 
-inventory = []
+# --------------------------
+# GLOBAL INVENTORY
+# --------------------------
+inventory = []  # shared across all cabins
 
-
+# --------------------------
+# RESET GAME STATE
+# --------------------------
 def reset_state():
-
-    global inventory
-    inventory = []
-
+    """Return initial state for a new game loop (does NOT reset inventory)."""
     return {
         "loop_count": 1,
         "saw_ticket": False,
@@ -38,15 +40,37 @@ def reset_state():
         "morse_code": ""
     }
 
+# --------------------------
+# DISPLAY HUD
+# --------------------------
+def display_status(state, cabin):
+    """Display loop, cabin number, and current inventory."""
+    print("\n" + "=" * 45)
+    print(f"LOOP: {state.get('loop_count', 1)} | CABIN: {cabin}")
+    if inventory:
+        print("INVENTORY:", ", ".join(inventory))
+    else:
+        print("INVENTORY: empty")
+    print("=" * 45 + "\n")
 
+# --------------------------
+# HELPER TO PICK UP ITEMS
+# --------------------------
+def acquire_item(item, state, cabin):
+    """Add item to inventory and immediately refresh HUD."""
+    if item not in inventory:
+        inventory.append(item)
+    display_status(state, cabin)
+
+# --------------------------
+# MAIN GAME LOOP
+# --------------------------
 def play_game():
-
     game_state = reset_state()
     loop_count = 1
     game_over = False
 
-    while game_over == False:
-
+    while not game_over:
         game_state["loop_count"] = loop_count
         generate_code(game_state)
 
@@ -55,49 +79,46 @@ def play_game():
         print("=" * 40)
 
         if game_state.get("took_hatch_shortcut"):
-
+            # skip cabins if hatch taken
             game_over = final_cabin.enter(game_state, loop_count)
-
         else:
-
             cabin_one.enter(game_state)
             cabin_two.enter(game_state)
             cabin_three.enter(game_state)
             cabin_four.enter(game_state)
             cabin_five.enter(game_state)
-
             game_over = final_cabin.enter(game_state, loop_count)
 
         loop_count += 1
 
     replay()
 
-
+# --------------------------
+# REPLAY PROMPT
+# --------------------------
 def replay():
-
     choice = input("\nPlay again? (y/n): ").lower()
-
     if choice == "y":
+        inventory.clear()  # clear inventory when starting fresh
         play_game()
-
     elif choice == "n":
         print("\nThanks for playing Tunnel 12!")
-
     else:
         print("Invalid choice.")
         replay()
 
-
+# --------------------------
+# MAIN ENTRY
+# --------------------------
 def main():
-
     print("=======================")
     print("|      TUNNEL 12      |")
     print("=======================\n")
 
     name = input("Please enter your name:\n")
-
     print(f"\nWelcome {name}, to Tunnel 12.\n")
 
+    inventory.clear()  # clear inventory once at game start
     play_game()
 
 

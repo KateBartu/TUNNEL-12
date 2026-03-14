@@ -9,8 +9,11 @@ Author: Kate Bartu
 Date Created: March 10, 2026
 """
 
+import main
+
 def enter(state, loops):
 
+    main.display_status(state, 1)
     print("\nFINAL CABIN\n")
     print("The control room of the train. Dashboard lights flicker.\n")
 
