@@ -11,6 +11,7 @@ Date Created: March 10, 2026
 
 import main
 import cabin_one
+import final_cabin
 
 def enter(state):
 
@@ -37,6 +38,7 @@ def enter(state):
                   "The door unlocks with a heavy clunk.\n")
 
             state["cabin5_unlocked"] = True
+            final_cabin.enter(state)
 
         else:
 

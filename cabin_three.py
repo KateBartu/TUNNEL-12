@@ -22,18 +22,6 @@ def enter(state):
           "One window is cracked like a spiderweb.\n"
           "The train groans as it moves through the dark.\n")
 
-    close = input("Do you want to close the cabin door behind you?\n"
-                  "Yes/No   (y) or (n)\n")
-    if close.lower() == "y":
-        print("\nYou close the cabin door behind you.")
-
-    elif close.lower() == "n":
-        print("\nYou leave the cabin door open.")
-
-    else:
-        print("Invalid choice.")
-        enter(state)
-
     choice = input("Do you\n"
                    "1) Inspect the broken window\n"
                    "2) Move to the next cabin\n")

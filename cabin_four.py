@@ -83,7 +83,7 @@ def enter(state):
     elif choice == "2":
 
         if state.get("has_old_woman_paper"):
-            read_note()
+            read_note(state)
         else:
             print("\nYou don't have anything to read.\n")
             input("Press enter to restart at Cabin One.\n")
@@ -100,7 +100,7 @@ def enter(state):
         print("Invalid choice.")
         enter(state)
 
-def read_note():
+def read_note(state):
 
     print("\nYou unfold the old woman's paper.\n")
 
@@ -128,3 +128,4 @@ def read_note():
 """)
 
     input("\nPress enter to fold the paper again.\n")
+    signal_terminal(state)

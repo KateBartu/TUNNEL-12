@@ -46,7 +46,7 @@ def reset_state():
 def display_status(state, cabin):
     """Display loop, cabin number, and current inventory."""
     print("\n" + "=" * 45)
-    print(f"LOOP: {state.get('loop_count', 1)} | CABIN: {cabin}")
+    print(f"LOOP: {state.get('loop_count', 1)}")
     if inventory:
         print("INVENTORY:", ", ".join(inventory))
     else:
@@ -80,14 +80,14 @@ def play_game():
 
         if game_state.get("took_hatch_shortcut"):
             # skip cabins if hatch taken
-            game_over = final_cabin.enter(game_state, loop_count)
+            game_over = final_cabin.enter(game_state)
         else:
             cabin_one.enter(game_state)
             cabin_two.enter(game_state)
             cabin_three.enter(game_state)
             cabin_four.enter(game_state)
             cabin_five.enter(game_state)
-            game_over = final_cabin.enter(game_state, loop_count)
+            game_over = final_cabin.enter(game_state)
 
         loop_count += 1
 

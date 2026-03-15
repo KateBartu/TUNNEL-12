@@ -93,7 +93,7 @@ def look_around_cabin_two(state):
           "Every screen displays a smiling man.\n"
           "Below his face reads:\n"
           "'Consistency is comfort.'\n"
-          "There is a locked door at the far end of the cabin.")
+          "There is an open door at the far end of the cabin.")
     input("Press enter to continue\n")
     cabin_three.enter(state)
 

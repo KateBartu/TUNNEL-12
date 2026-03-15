@@ -129,10 +129,7 @@ def option_retalk(state):
           "'And not before.' she warns with a stern look. \n"
           "You pocket the paper.\n")
     state["has_old_woman_paper"] = True
-
-    if "old woman's note" not in main.inventory:
-        main.inventory.append("old woman's note")
-    main.display_status(state, 1)
+    main.acquire_item("old woman's note", state, 1)
 
     input("Press enter to continue to Cabin 2.\n")
     cabin_two.enter(state)
