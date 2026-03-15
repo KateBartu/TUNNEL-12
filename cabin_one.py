@@ -11,6 +11,7 @@ Date Created: March 10, 2026
 
 import cabin_two
 import main
+import final_cabin
 
 def enter(state):
     if state.get("loop_count", 1) == 1:
@@ -149,6 +150,7 @@ def cabin_one4(state):
           "You can see all the way out to the very front cabin.\n"
           "I'm sure if you're careful you could make it!\n")
     state["took_hatch_shortcut"] = True
+    final_cabin.enter(state)
 
 # ================= OPTION A ================= #
 

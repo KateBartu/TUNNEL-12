@@ -27,7 +27,7 @@ def enter(state):
         endings.append("You feel at home behind the controls, knowing the train intimately.\n")
 
     if state.get("has_old_woman_paper"):
-        endings.append("The note from the old woman rests in your hand, revealing hidden truths.\n")
+        endings.append("The note from the old woman rests in your hand.\n")
 
     if state.get("saw_shadow"):
         endings.append("A fleeting shadow reminds you of warnings you once ignored.\n")
