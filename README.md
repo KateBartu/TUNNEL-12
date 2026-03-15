@@ -1,0 +1,1 @@
+Tunnel 12 is a text-based adventure game in Python that simulates a mysterious train journey with time loops, puzzles, and branching storylines. Players explore multiple cabins, interact with characters, collect items, and solve challenges to uncover the secrets of Tunnel 12.
