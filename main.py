@@ -25,13 +25,12 @@ def reset_state():
     """Return initial state for a new game."""
     return {
         "loop_count": 1,
-        "saw_shadow": False,
-        "knows_conductor": False,
-        "has_old_woman_paper": False,
-        "took_hatch_shortcut": False,
-        "picked_up_metal_object": False,
-        "cabin5_unlocked": False,
-        "saw_conductor_reflection": False,
+        "saw_shadow": False,                    # Exploration Flag
+        "knows_conductor": False,               # Truth flag
+        "has_old_woman_paper": False,           # truth flag
+        "took_hatch_shortcut": False,           # traversal flag
+        "picked_up_metal_object": False,        # exploration flag
+        "saw_conductor_reflection": False,      # exploration flag
         "morse_code": ""
     }
 

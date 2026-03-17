@@ -45,7 +45,6 @@ def enter(state):
                   "The door unlocks with a heavy clunk.\n"
                   "------------------------------------------------------\n")
 
-            state["cabin5_unlocked"] = True
             final_cabin.enter(state)
 
         else:

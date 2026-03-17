@@ -68,14 +68,6 @@ def enter(state):
             "A tool... or a mistake.\n"
         )
 
-    if state.get("cabin5_unlocked"):
-        endings.append(
-            "You remember forcing something open.\n"
-            "Breaking a path that wasn’t meant to be taken.\n"
-            "The train didn’t stop you.\n"
-            "It never does.\n"
-        )
-
     # True ending
     if (state.get("has_old_woman_paper")
             and state.get("saw_conductor_reflection")
@@ -86,7 +78,7 @@ def enter(state):
             "The memories. The warnings. The role you tried to forget.\n\n"
             "You were the conductor.\n"
             "And this loop... was never a prison.\n"
-            "It was a delay.\n\n"
+            "It was a delay.\n"
             "A second chance.\n"
         )
 
