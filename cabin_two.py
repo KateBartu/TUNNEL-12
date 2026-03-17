@@ -70,7 +70,6 @@ def watch_man(state):
               "You look at the object in your hand, It's a small brass transit token.\n"
               "------------------------------------------------------\n")
         state["picked_up_metal_object"] = True
-        state["saw_ticket"] = True
 
         if "brass_token" not in main.inventory:
             main.inventory.append("brass_token")

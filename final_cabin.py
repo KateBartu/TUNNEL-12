@@ -15,7 +15,9 @@ def enter(state):
     print("------------------------------------------------------\n"
           "\nFINAL CABIN\n")
     main.display_status(state, "Final Cabin")
-    print("The control room of the train. Dashboard lights flicker.\n"
+    print("The control room of the train. Dashboard lights flicker\n"
+          "An eerie silence fills the cabin.\n"
+          "A concerningly familiar feeling creeps upon you.\n"
           "------------------------------------------------------\n")
 
     # If player took the hatch shortcut
@@ -28,23 +30,19 @@ def enter(state):
     endings = []
 
     if state.get("knows_conductor"):
-        endings.append("You feel at home behind the controls, knowing the train intimately.\n")
+        endings.append("You take up residence on the conductor empty seat\n"
+                       "You feel at home behind the controls, knowing the train intimately.\n")
 
     if state.get("has_old_woman_paper"):
-        endings.append("The note from the old woman rests in your hand.\n")
+        endings.append("The note from the old woman rests in your hand.\n"
+                       "A memory surfaces: A derailment. Tunnel collapsing. Metal screaming against the dark.\n"
+                       "You were the conductor. This loop… was your last moment repeating.\n")
 
-    if state.get("saw_shadow"):
+    if state.get("saw_conductor_reflection"):
         endings.append("A fleeting shadow reminds you of warnings you once ignored.\n")
 
-    if state.get("saw_ticket"):
-        endings.append(
-            "The ticket in your pocket weighs heavily, reminding you of forgotten choices.\n"
-            "A memory surfaces: A derailment. Tunnel collapsing. Metal screaming against the dark.\n"
-            "You were the conductor. This loop… was your last moment repeating.\n"
-        )
-
     # If the player has all key flags, break the loop
-    if state.get("has_old_woman_paper") and state.get("saw_ticket") and state.get("knows_conductor"):
+    if state.get("has_old_woman_paper") and state.get("saw_conductor_reflection") and state.get("knows_conductor"):
         endings.append("The train slows. Tunnel 12 approaches one last time.\nLoop breaks. You are free.\n")
         for msg in endings:
             print(msg)

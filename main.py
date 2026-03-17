@@ -25,7 +25,6 @@ def reset_state():
     """Return initial state for a new game."""
     return {
         "loop_count": 1,
-        "saw_ticket": False,
         "saw_shadow": False,
         "knows_conductor": False,
         "has_old_woman_paper": False,
