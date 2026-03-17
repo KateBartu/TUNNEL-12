@@ -46,8 +46,8 @@ def watch_man(state):
     print("------------------------------------------------------\n"
           "You keep your eyes on him.\n"
           "8:14pm.\n"
-          "His hand slips."
-          "Something metallic hits the floor."
+          "His hand slips.\n"
+          "Something metallic hits the floor.\n"
           "It rolls beneath a seat.\n"
           "------------------------------------------------------\n")
 
@@ -99,7 +99,7 @@ def look_around_cabin_two(state):
           "Every screen displays a smiling man.\n"
           "Below his face reads:\n"
           "'Consistency is comfort.'\n"
-          "There is an open door at the far end of the cabin."
+          "There is an open door at the far end of the cabin.\n"
           "------------------------------------------------------\n")
     main.pause("Press enter to continue\n")
     cabin_three.enter(state)

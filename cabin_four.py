@@ -90,7 +90,7 @@ def enter(state):
                   "\nYou don't have anything to read.\n"
                   "------------------------------------------------------\n")
             main.pause("Press enter to restart at Cabin One.\n")
-            state["loop_count"] = max(state.get("loop_count", 1), 3)
+            state["loop_count"] = state.get("loop_count", 1), +1
             cabin_one.cabin_one3(state)
 
     else:
