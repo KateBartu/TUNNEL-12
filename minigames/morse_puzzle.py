@@ -37,13 +37,12 @@ def play(state, view_only=False):
     print("\n")
 
     if view_only:
-        input("Press enter to return to the terminal.\n")
         return False
 
-    guess = input("Enter the 4 letter code: ").upper()
+    guess = input("Enter the 4 letter code: ").strip().upper()
 
     if guess == code:
         return True
-    else:
-        print("\nWrong code, try again.\n")
-        return False
+
+    print("\nWrong code, try again.\n")
+    return False

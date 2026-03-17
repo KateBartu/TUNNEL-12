@@ -13,6 +13,7 @@ import cabin_two
 import main
 import final_cabin
 
+
 def enter(state):
     if state.get("loop_count", 1) == 1:
         first_loop(state)
@@ -23,13 +24,14 @@ def enter(state):
     else:
         cabin_one4(state)
 
+
 # ================= FIRST LOOP ================= #
 
 def first_loop(state):
 
     main.display_status(state, 1)
-    print("\nCABIN 1\n")
-
+    print("------------------------------------------------------\n"
+          "\nCABIN 1\n")
     print("The train hums beneath your feet.\n"
           "The map above the door reads: NEXT STOP - TUNNEL 12\n"
           "You don't remember boarding\n"
@@ -40,84 +42,82 @@ def first_loop(state):
           "'You're early', she snarks.\n"
           "You look up at the time displayed above the door.\n"
           "8:07pm\n"
-          "Befuddled, you stand up.\n")
+          "Befuddled, you stand up.\n"
+          "------------------------------------------------------\n")
 
-
-    choice = input("Do you\n"
-                    "1) look around.\n"
-                    "2) charge ahead to the next cabin.\n"
-                    "3) Ask the old lady, 'Where are we going?'\n").lower()
+    choice = main.get_choice(
+        "Do you\n"
+        "1) look around.\n"
+        "2) charge ahead to the next cabin.\n",
+        {"1", "2"}
+    )
 
     if choice == "1":
         option_1(state)
-
-    elif choice == "2":
+    else:
         cabin_two.enter(state)
 
-    elif choice == "3":
-        option_3(state)
-
-    else:
-        print("Invalid choice.")
-        first_loop(state)
 
 # ================= SECOND LOOP ================= #
 
 def cabin_one2(state):
 
     main.display_status(state, 1)
-    print("\nCABIN 1\n")
+    print("------------------------------------------------------\n"
+          "\nCABIN 1\n")
     print("The train hums beneath your feet.\n"
           "The map above the door reads: NEXT STOP - TUNNEL 12\n"
           "The intercom crackles, 'Thank you for choosing TriMet Transit-'\n"
           "What the f***? Wasn't I just here?\n"
           "You check the time.\n"
-          "8:07pm\n")
+          "8:07pm\n"
+          "------------------------------------------------------\n")
 
-    choice = input("Do you\n"
-                   "1) Ask the old lady, 'Where are we going?'\n"
-                   "2) charge ahead to the next cabin.\n").lower()
+    choice = main.get_choice(
+        "Do you\n"
+        "1) Ask the old lady, 'Where are we going?'\n"
+        "2) charge ahead to the next cabin.\n",
+        {"1", "2"}
+    )
 
     if choice == "1":
         option_3(state)
-
-    elif choice == "2":
+    else:
         cabin_two.enter(state)
 
-    else:
-        print("Invalid choice.")
-        cabin_one2(state)
 
 # ================= THIRD LOOP ================= #
 
 def cabin_one3(state):
 
     main.display_status(state, 1)
-    print("\nCABIN 1\n")
+    print("------------------------------------------------------\n"
+          "\nCABIN 1\n")
     print("The train hums beneath your feet.\n"
           "Back in cabin 1? No way - it can't be...\n"
           "Nobody is here.\n"
           "'...passenger disturbance in Cabin Two...' The intercom crackles\n"
           "'...please remain calm...'\n"
-          "'...this train will be stopping shortly...'\n")
+          "'...this train will be stopping shortly...'\n"
+          "------------------------------------------------------\n")
 
-    choice = input("Do you\n"
-                   "1) Rush back to Cabin Two\n"
-                   "2) Try to talk to the lady one more time\n").lower()
+    choice = main.get_choice(
+        "Do you\n"
+        "1) Rush back to Cabin Two\n"
+        "2) Try to talk to the lady one more time\n",
+        {"1", "2"}
+    )
 
     if choice == "1":
         cabin_two.enter(state)
-
-    elif choice == "2":
+    else:
         option_retalk(state)
 
-    else:
-        print("Invalid choice.")
-        cabin_one3(state)
 
 def option_retalk(state):
 
-    print("You walk up to the old lady.\n"
+    print("------------------------------------------------------\n"
+          "You walk up to the old lady.\n"
           "She suddenly grabs your sleeve and presses a small folded piece of paper into your hand.\n"
           "'Take it,' she says.\n"
           "You look at it. Blank on the outside.\n"
@@ -128,75 +128,88 @@ def option_retalk(state):
           "'Open it only if you’re in real trouble.'\n"
           "She lets go of your sleeve.\n"
           "'And not before.' she warns with a stern look. \n"
-          "You pocket the paper.\n")
+          "You pocket the paper.\n"
+          "------------------------------------------------------\n")
     state["has_old_woman_paper"] = True
     main.acquire_item("old woman's note", state, 1)
 
-    input("Press enter to continue to Cabin 2.\n")
+    main.pause("Press enter to continue to Cabin 2.\n")
     cabin_two.enter(state)
+
 
 # ================= FOURTH LOOP shortcut =================
 
 def cabin_one4(state):
 
     main.display_status(state, 1)
-    print("\nCABIN 1\n")
+    print("------------------------------------------------------\n"
+          "\nCABIN 1\n")
     print("The train hums beneath your feet.\n"
           "Back again. You think to yourself.\n"
           "You look above you and notice a hatch glows faintly of an outside light.\n")
-    input("Press enter to go through the hatch.\n")
+    main.pause("Press enter to go through the hatch.\n")
     print("You climb on top of the chairs and lift yourself through the hatch and onto the roof.\n"
           "There's enough room to stand as the train.\n "
           "You can see all the way out to the very front cabin.\n"
-          "I'm sure if you're careful you could make it!\n")
+          "I'm sure if you're careful you could make it!\n"
+          "------------------------------------------------------\n")
     state["took_hatch_shortcut"] = True
     final_cabin.enter(state)
+
 
 # ================= OPTION A ================= #
 
 def option_1(state):
 
-    print("\nThe route map flickers between stations too fast to read.\n"
+    print("------------------------------------------------------\n"
+          "The route map flickers between stations too fast to read.\n"
           "Every advertisement features the same smiling man.\n"
           "A hatch on the roof, slightly open, letting in the heavy sound of the tracks.\n"
           "The windows show only darkness.\n"
-          "A forgotten coffee cup on the seat beside you. It’s warm.\n")
+          "A forgotten coffee cup on the seat beside you. It’s warm.\n"
+          "------------------------------------------------------\n")
 
-    sub_choice = input("Do you\n"
-                       "1) keep looking\n"
-                       "2) Move onto the next cabin.\n")
+    sub_choice = main.get_choice(
+        "Do you\n"
+        "1) keep looking\n"
+        "2) Move onto the next cabin.\n",
+        {"1", "2"}
+    )
 
     if sub_choice == "1":
         option_11(state)
-    elif sub_choice == "2":
-        cabin_two.enter(state)
     else:
-        print("Invalid choice.")
-        option_1(state)
+        cabin_two.enter(state)
 
 
 # ================= OPTION A1 =================
 
 def option_11(state):
 
-    print("\nYou've looked long enough and you realize,\n"
+    print("------------------------------------------------------\n"
+          "You've looked long enough and you realize,\n"
           "No one else is blinking.\n"
           "Not the old lady.\n"
           "Not the man gripping the pole.\n"
           "Not the teenager with headphones.\n"
           "When you make eye contact with one of them, they blink in unison.\n"
           "All of them.\n"
-          "Then the intercom whispers your name from the cabin beyond.\n")
+          "Then the intercom whispers your name from the cabin beyond.\n"
+          "------------------------------------------------------\n")
 
-    sub_choice = input("Do you\n"
-                       "1) get as fast as you can out of cabin 1.\n"
-                       "2) Ask 'How do they know my name?'\n")
+    sub_choice = main.get_choice(
+        "Do you\n"
+        "1) get as fast as you can out of cabin 1.\n"
+        "2) Ask 'How do they know my name?'\n",
+        {"1", "2"}
+    )
 
     if sub_choice == "1":
         cabin_two.enter(state)
 
-    elif sub_choice == "2":
-        print("\nYour voice cracks as you ask the question.\n"
+    else:
+        print("------------------------------------------------------\n"
+              "Your voice cracks as you ask the question.\n"
               "'How do they know my name?'\n"
               "The old woman smiles.\n"
               "'Because you've asked before.'\n"
@@ -206,19 +219,18 @@ def option_11(state):
               "You don't remember him standing up.\n"
               "The lights flicker.\n"
               "Everything goes dark.\n"
-              "The hum never stops.\n")
+              "The hum never stops.\n"
+              "------------------------------------------------------\n")
         state["loop_count"] = 2
         cabin_one2(state)
 
-    else:
-        print("Invalid choice.")
-        option_11(state)
 
 # ================= OPTION C =================
 
 def option_3(state):
 
-    print("\nWhere are we going? You ask the lady.\n"
+    print("------------------------------------------------------\n"
+          "Where are we going? You ask the lady.\n"
           "She doesn’t answer immediately.\n"
           "She studies you like someone remembering a dream.\n"
           "Then she says:\n"
@@ -228,8 +240,15 @@ def option_3(state):
           "Her voice softens.\n"
           "'You always forget that part.'\n"
           "The lights flicker.\n"
-          "For half a second.\n")
+          "For half a second.\n"
+          "------------------------------------------------------\n")
 
-    input("Press enter to continue.\n")
-    state["loop_count"] = 2
-    cabin_one3(state)
+    main.pause("Press enter to continue.\n")
+    current_loop = state.get("loop_count", 1)
+
+    if current_loop <= 1:
+        state["loop_count"] = 2
+        cabin_one2(state)
+    else:
+        state["loop_count"] = 3
+        cabin_one3(state)

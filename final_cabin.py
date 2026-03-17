@@ -12,13 +12,17 @@ Date Created: March 10, 2026
 import main
 
 def enter(state):
-    print("\nFINAL CABIN\n")
+    print("------------------------------------------------------\n"
+          "\nFINAL CABIN\n")
     main.display_status(state, "Final Cabin")
-    print("The control room of the train. Dashboard lights flicker.\n")
+    print("The control room of the train. Dashboard lights flicker.\n"
+          "------------------------------------------------------\n")
 
     # If player took the hatch shortcut
     if state.get("took_hatch_shortcut"):
-        print("The hatch behind you closes, leaving only the control room ahead.\n")
+        print("------------------------------------------------------\n"
+              "The hatch behind you closes, leaving only the control room ahead.\n"
+              "------------------------------------------------------\n")
 
     # Determine endings based on player actions
     endings = []
